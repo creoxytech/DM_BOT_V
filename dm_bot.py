@@ -241,4 +241,5 @@ def run_bot(single_pass=False):
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":
-    run_bot(single_pass=False)
+    single_pass = os.environ.get("SINGLE_PASS", "false").lower() == "true"
+    run_bot(single_pass=single_pass)

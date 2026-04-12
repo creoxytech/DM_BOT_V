@@ -3,12 +3,12 @@ name: DM Bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"  # restart every 6 hours
+    - cron: "*/10 * * * *"  # run every 10 minutes
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 9
 
     steps:
       - uses: actions/checkout@v4
@@ -26,4 +26,4 @@ jobs:
           INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INSTAGRAM_SESSION: ${{ secrets.INSTAGRAM_SESSION }}
-        run: python dm_bot.py
+        run: SINGLE_PASS=true python dm_bot.py
